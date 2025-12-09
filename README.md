@@ -1,32 +1,34 @@
 # Patient Document Portal
 
-A simple full-stack web application for uploading and managing patient medical documents (PDFs).
+A simple full-stack application for uploading and managing patient medical documents (PDFs).
 
 Users can:
+- Upload a PDF file  
+- View all uploaded documents  
+- Download any document  
+- Delete a document when no longer needed  
 
-- Upload a PDF file.
-- View all uploaded documents.
-- Download any document.
-- Delete a document when it is no longer needed.
-
-This project implements the requirements of the “Full Stack Developer Intern” assignment: a local app with a React frontend, Node.js/Express backend, files stored in an `uploads/` folder, and metadata stored in a SQLite database. :contentReference[oaicite:2]{index=2}  
+This project fulfills the Full Stack Developer Intern assignment.  
+It includes a React frontend, Node.js/Express backend, SQLite database, and local PDF storage.
 
 ---
 
 ## 1. Project Structure
 
-```text
+```
 patient-portal-documents/
 ├── backend/
-│   ├── server.js        # Express app, routes and file handling
-│   ├── db.js            # SQLite connection and table creation
-│   ├── uploads/         # Uploaded PDF files (created at runtime)
+│   ├── server.js              # Express backend & API routes
+│   ├── db.js                  # SQLite initialization
 │   ├── package.json
-│   └── database.sqlite  # SQLite database file (created automatically)
+│   ├── uploads/               # PDF files (runtime only)
+│   └── database.sqlite        # Created automatically
 │
 ├── frontend/
 │   ├── index.html
 │   ├── package.json
+│   ├── vite.config.js
+│   ├── eslint.config.js
 │   └── src/
 │       ├── App.jsx
 │       ├── main.jsx
@@ -37,143 +39,126 @@ patient-portal-documents/
 │           ├── UploadForm.jsx
 │           └── DocumentList.jsx
 │
-├── design.md            # Design document (architecture, APIs, assumptions)
-└── README.md            # This file
-2. Tech Stack
+├── design.md                  # Design answers (all 6 questions)
+└── README.md                  # This file
+```
 
-Frontend: React (Vite), Fetch API
+---
 
-Backend: Node.js, Express, Multer
+## 2. Tech Stack
 
-Database: SQLite (sqlite3 Node driver)
+**Frontend:** React (Vite), Fetch API  
+**Backend:** Node.js, Express, Multer  
+**Database:** SQLite  
+**Runtime:** Node.js LTS  
 
-Runtime: Node.js (LTS)
+---
 
-3. Prerequisites
+## 3. Prerequisites
 
-Node.js and npm installed
+Install:
+- Node.js & npm  
+- SQLite (optional for manual DB inspection)  
+- Windows/macOS/Linux (tested on Windows 10/11)
 
-SQLite installed (for optional manual inspection of the database)
+---
 
-OS: tested on Windows 10/11
+## 4. Running the Backend
 
-4. Running the Backend
-
-Open a terminal and navigate to the backend folder:
-
+```bash
 cd backend
-
-
-Install dependencies (if not already installed):
-
 npm install
-
-
-Start the backend in development mode:
-
 npm run dev
+```
 
-
-The server runs on:
-
+Backend runs at:
+```
 http://localhost:5000
+```
 
 Health check:
-
+```bash
 curl http://localhost:5000/health
+```
 
-
-Expected response:
-
+Expected:
+```json
 {"status":"ok"}
+```
 
+Backend automatically:
+- Creates `database.sqlite`
+- Ensures `uploads/` folder exists
+- Creates `documents` table if missing
 
-When the server starts for the first time, it automatically:
+---
 
-creates database.sqlite in the backend folder
+## 5. Running the Frontend
 
-creates the documents table if it does not exist
-
-ensures the uploads/ directory exists
-
-5. Running the Frontend
-
-In a new terminal, navigate to the frontend folder:
-
+```bash
 cd frontend
-
-
-Install dependencies (if not already installed):
-
 npm install
-
-
-Start the development server:
-
 npm run dev
+```
 
-
-Open the URL shown in the terminal, typically:
-
+Open:
+```
 http://localhost:5173/
+```
 
-You should see the Patient Document Portal UI.
+You should now see the **Patient Document Portal UI**.
 
-6. Usage
+---
 
-Open the frontend URL in your browser.
+## 6. Usage
 
-Click “Choose File” and select a PDF from your system.
+1. Open the frontend.
+2. Click **Choose File** → Select a PDF.
+3. Click **Upload PDF**.
+4. PDF will appear in the documents table.
+5. Click **Download** to open/save the file.
+6. Click **Delete** to permanently remove it.
 
-Click “Upload PDF”.
+---
 
-If successful:
+## 7. Example API Calls
 
-A green message appears (“Document uploaded successfully.”).
-
-The document appears in the Uploaded Documents table.
-
-Use “Download” to download/open the PDF.
-
-Use “Delete” to remove a document from both the database and disk.
-
-7. Example API Calls (curl)
-
-Assuming the backend is running on http://localhost:5000.
-
-7.1 Upload a PDF
+### Upload
+```bash
 curl -X POST http://localhost:5000/documents/upload \
   -F "file=@test.pdf"
+```
 
-7.2 List all documents
+### List
+```bash
 curl http://localhost:5000/documents
+```
 
-7.3 Download a document by ID
+### Download
+```bash
 curl -O http://localhost:5000/documents/1
+```
 
-7.4 Delete a document by ID
+### Delete
+```bash
 curl -X DELETE http://localhost:5000/documents/1
+```
 
-8. Notes and Limitations
+---
 
-Only PDF files are allowed.
+## 8. Notes & Limitations
 
-The application assumes a single user (no authentication).
+- Only PDF files allowed.
+- Local single-user system (no authentication).
+- Files stored in `backend/uploads/`.
+- For production: move file storage to cloud and upgrade DB to PostgreSQL.
 
-Files are stored locally in the backend/uploads/ folder.
+---
 
-For real multi-user/production usage, a cloud file store and a more robust database (e.g., PostgreSQL) would be recommended.
+## 9. Possible Improvements
 
-9. Possible Improvements
-
-If this were to be extended beyond the assignment, some ideas are:
-
-Add authentication and per-user document ownership.
-
-Add document tags or types (Prescription, Lab Report, Referral, etc.).
-
-Move file storage to cloud object storage.
-
-Add pagination and search for large document sets.
-
-Add tests (unit/integration) for the backend endpoints.
+- Add authentication & multi-user support  
+- Add document categories  
+- Add pagination & search  
+- Add unit tests with Jest/Supertest  
+- Deploy backend & frontend to cloud  
