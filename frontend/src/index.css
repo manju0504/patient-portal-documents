@@ -1,0 +1,234 @@
+/* frontend/src/index.css */
+
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #0f172a;
+  background-color: #f3f4f6;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #e5edff 0, #f3f4f6 45%, #f3f4f6 100%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Layout */
+
+.app-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 16px 40px;
+}
+
+.app-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px 20px 28px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+/* Header */
+
+.app-header {
+  margin-bottom: 20px;
+}
+
+.app-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.app-subtitle {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+/* Alerts */
+
+.app-alert {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.app-alert-success {
+  background-color: #ecfdf3;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.app-alert-error {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+/* Upload Form */
+
+.upload-card {
+  border-radius: 10px;
+  border: 1px dashed #cbd5f5;
+  background: linear-gradient(135deg, #f9fafb 0, #eef2ff 100%);
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.upload-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #111827;
+}
+
+.upload-subtitle {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.upload-file-info {
+  font-size: 0.85rem;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.upload-error {
+  font-size: 0.85rem;
+  color: #b91c1c;
+  margin-bottom: 6px;
+}
+
+.upload-actions {
+  margin-top: 8px;
+}
+
+/* Buttons */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.08s ease, box-shadow 0.08s ease, background-color 0.12s ease;
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
+}
+
+.btn-primary:disabled {
+  background-color: #9ca3af;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-success {
+  background-color: #16a34a;
+  color: #ffffff;
+}
+
+.btn-success:hover {
+  background-color: #15803d;
+}
+
+.btn-danger {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background-color: #b91c1c;
+}
+
+/* Table */
+
+.documents-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.documents-wrapper {
+  overflow-x: auto;
+}
+
+.documents-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.documents-table th,
+.documents-table td {
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.documents-table thead {
+  background-color: #f3f4f6;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.documents-table th {
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b7280;
+}
+
+.documents-table tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.documents-table tbody tr:hover {
+  background-color: #eef2ff;
+}
+
+.documents-table td {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.documents-empty {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* Small text */
+
+.text-muted {
+  font-size: 0.82rem;
+  color: #9ca3af;
+  margin-top: 6px;
+}
